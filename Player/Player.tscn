@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2xnf60p6jyi2"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_mwl6e"]
+[ext_resource type="Texture2D" uid="uid://chpgjuv7wr5sw" path="res://Space Shooter files/player/sprites/player1.png" id="2_rowf8"]
+[ext_resource type="Texture2D" uid="uid://dhjpqkyl6kg5w" path="res://Space Shooter files/player/sprites/player2.png" id="3_t8rcr"]
+[ext_resource type="Texture2D" uid="uid://br0mlslb4ymsb" path="res://Space Shooter files/player/sprites/player3.png" id="4_idcje"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1iiy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5r2yx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rowf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t8rcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_idcje")
+}],
+"loop": true,
+"name": &"Motion",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_mwl6e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_k1iiy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5r2yx")
+animation = &"Motion"
