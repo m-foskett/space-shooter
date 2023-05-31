@@ -16,8 +16,9 @@ func _ready():
 
 func _physics_process(delta):
 	move(delta)
-	
+	# If player is interacting
 	if Input.is_action_just_pressed("Interact"):
+		# Execute the interaction
 		execute_interaction()
 
 func get_input_axis():
@@ -81,8 +82,11 @@ func update_interactions():
 		interactLabel.text = ""
 		
 func execute_interaction():
+	# If there are interactions stored
 	if all_interactions:
-		var current_interaction = all_interactions[0]
+		# Get the current interaction
+		var current_interaction: Area2D = all_interactions[0]
+		# Match the current interaction's type
 		match current_interaction.interact_type:
 			"print_text": print(current_interaction.interact_value)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
