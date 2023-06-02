@@ -1,15 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmwrqhcxe1fma"]
+[gd_scene load_steps=5 format=3 uid="uid://cmwrqhcxe1fma"]
 
 [ext_resource type="PackedScene" uid="uid://b2xnf60p6jyi2" path="res://Player/Player.tscn" id="1_eftdg"]
 [ext_resource type="PackedScene" uid="uid://du5f68elrjh46" path="res://Game Components/Interact Area/interact_area.tscn" id="2_pe7h4"]
+[ext_resource type="PackedScene" uid="uid://0mgxrls8whml" path="res://Enemy/enemy.tscn" id="3_ft6wr"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7o6hn"]
+vertices = PackedVector2Array(962, 494, 693, 382, 839, 268, 1047, 235, 804, 82, 984, 131, 720, 175, 611, 116, 404, 122, 422, 549, 373, 298, 277, 450)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 3, 2, 6), PackedInt32Array(7, 4, 6), PackedInt32Array(8, 7, 6, 9, 10), PackedInt32Array(10, 9, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(804, 82, 984, 131, 1047, 235, 962, 494, 693, 382, 839, 268, 720, 175, 422, 549, 277, 450, 373, 298, 404, 122, 611, 116)])
 
 [node name="Level1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_eftdg")]
-position = Vector2(545, 242)
+position = Vector2(64, 585)
 
 [node name="InteractArea" parent="." instance=ExtResource("2_pe7h4")]
-position = Vector2(897, 316)
+position = Vector2(973, 124)
 interact_label = "Interaction Test"
 interact_type = "print_text"
 interact_value = "Yay! It works!"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(57, -38)
+navigation_polygon = SubResource("NavigationPolygon_7o6hn")
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("movement_target") instance=ExtResource("3_ft6wr")]
+position = Vector2(423, 396)
+movement_target = NodePath("../NavTarget")
+
+[node name="NavTarget" type="Marker2D" parent="."]
+position = Vector2(980, 371)
