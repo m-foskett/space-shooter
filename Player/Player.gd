@@ -10,16 +10,36 @@ extends CharacterBody2D
 @onready var all_interactions: Array[Area2D] = []
 @onready var interactLabel = $"Interaction Components/InteractLabel"
 
+# Get the Bullet scene path
+const path: String = "res://bullet.tscn"
+# Preload instance of a Bullet scene
+# Returns: a PackedScene from the filesystem located at path
+var BulletScene: PackedScene = preload(path)
+
 func _ready():
 	# Update the interactions
 	update_interactions()
 
 func _physics_process(delta):
 	move(delta)
+	# If player is shooting
+	if Input.is_action_just_pressed("ui_select"):
+		fire_weapon()
 	# If player is interacting
 	if Input.is_action_just_pressed("Interact"):
 		# Execute the interaction
 		execute_interaction()
+		
+# Fire weapon
+func fire_weapon():
+	# Get the Bullet Node tree
+	var bullet: Node = BulletScene.instantiate()
+	# Assign a direction vector to the bullet spawn point
+	bullet.direction =  $"Bullet Spawn Point".global_position - global_position
+	# Set the bullet position to the bullet spawn point
+	bullet.global_position = global_position
+	# Add the bullet to the Scene tree
+	add_child(bullet)
 
 func get_input_axis():
 	# Map the input to a 2D Vector

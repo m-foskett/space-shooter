@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbyn4p7goy6ca"]
+
+[ext_resource type="Script" path="res://Bullet.gd" id="1_ic71x"]
+[ext_resource type="Texture2D" uid="uid://lbl3a54a8ors" path="res://Space Shooter files/shoot/shoot1.png" id="2_wludu"]
+[ext_resource type="Texture2D" uid="uid://b1j8uawm1pv0y" path="res://Space Shooter files/shoot/shoot2.png" id="3_lr83l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d718x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wludu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lr83l")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_frn5k"]
+radius = 3.0
+height = 16.0
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_ic71x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_d718x")
+animation = &"Default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_frn5k")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
