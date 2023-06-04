@@ -1,7 +1,7 @@
 extends Area2D
 
 var direction = Vector2.RIGHT
-var speed: float = 400
+var speed: float = 500
 
 func _process(delta):
 	# Move the bullet
