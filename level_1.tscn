@@ -11,6 +11,8 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(804, 82, 984, 131, 1047
 
 [node name="Level1" type="Node2D"]
 
+[node name="Bullets" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("1_eftdg")]
 position = Vector2(64, 585)
 

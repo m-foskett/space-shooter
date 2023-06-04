@@ -34,12 +34,12 @@ func _physics_process(delta):
 func fire_weapon():
 	# Get the Bullet Node tree
 	var bullet: Node = BulletScene.instantiate()
-	# Assign a direction vector to the bullet spawn point
-	bullet.direction =  $"Bullet Spawn Point".global_position - global_position
+	# Assign a direction vector from player to the bullet spawn point
+	bullet.direction =  $"Bullet Spawn Point".global_position - position
 	# Set the bullet position to the bullet spawn point
-	bullet.global_position = global_position
-	# Add the bullet to the Scene tree
-	add_child(bullet)
+	bullet.position = $"Bullet Spawn Point".global_position
+	# Add the bullet to the Scene tree under the Bullets Node Group
+	get_node("/root/Level1/Bullets").add_child(bullet)
 
 func get_input_axis():
 	# Map the input to a 2D Vector
