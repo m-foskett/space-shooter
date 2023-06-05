@@ -9,6 +9,9 @@ extends CharacterBody2D
 # Interacted Areas Array
 @onready var all_interactions: Array[Area2D] = []
 @onready var interactLabel = $"Interaction Components/InteractLabel"
+# Weapon type enumeration
+enum Weapons {Single = 0, Shotgun}
+@export var Weapon_Type : Weapons = Weapons.Shotgun
 
 # Get the Bullet scene path
 const path: String = "res://bullet.tscn"
@@ -32,14 +35,30 @@ func _physics_process(delta):
 		
 # Fire weapon
 func fire_weapon():
-	# Get the Bullet Node tree
-	var bullet: Node = BulletScene.instantiate()
-	# Assign a direction vector from player to the bullet spawn point
-	bullet.direction =  $"Bullet Spawn Point".global_position - position
-	# Set the bullet position to the bullet spawn point
-	bullet.position = $"Bullet Spawn Point".global_position
-	# Add the bullet to the Scene tree under the Bullets Node Group
-	get_node("/root/Level1/Bullets").add_child(bullet)
+	if Weapon_Type == Weapons.Single:
+		# Get the Bullet Node tree
+		var bullet: Node = BulletScene.instantiate()
+		# Assign a direction vector from player to the bullet spawn point
+		bullet.direction =  ($"Bullet Spawn Point".global_position - global_position).normalized()
+		# Set the bullet position to the bullet spawn point
+		bullet.position = $"Bullet Spawn Point".global_position
+		# Add the bullet to the Scene tree under the Bullets Node Group
+		get_node("/root/Level1/Bullets").add_child(bullet)
+	elif Weapon_Type == Weapons.Shotgun:
+		var bulletAmount: int = 3
+		var bulletDirections: Array[float] = [PI/36, 0, -PI/36]
+		for i in range(0, bulletAmount):
+			# Get the Bullet Node tree
+			var bullet: Node = BulletScene.instantiate()
+			# Assign a direction vector from player to the bullet spawn point
+			bullet.direction =  ($"Bullet Spawn Point".global_position - global_position).normalized()
+			# Rotate the bullet direction accordingly
+			bullet.direction.x = cos(bulletDirections[i])*bullet.direction.x - sin(bulletDirections[i])*bullet.direction.y
+			bullet.direction.y = sin(bulletDirections[i])*bullet.direction.x + cos(bulletDirections[i])*bullet.direction.y
+			# Set the bullet position to the bullet spawn point
+			bullet.position = $"Bullet Spawn Point".global_position
+			# Add the bullet to the Scene tree under the Bullets Node Group
+			get_node("/root/Level1/Bullets").add_child(bullet)
 
 func get_input_axis():
 	# Map the input to a 2D Vector
