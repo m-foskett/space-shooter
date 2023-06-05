@@ -5,7 +5,7 @@ var speed: float = 500
 
 func _process(delta):
 	# Move the bullet
-	translate(direction.normalized() * speed * delta)
+	translate(direction * speed * delta)
 
 
 func _on_body_entered(body):
