@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmwrqhcxe1fma"]
+[gd_scene load_steps=6 format=3 uid="uid://cmwrqhcxe1fma"]
 
 [ext_resource type="PackedScene" uid="uid://b2xnf60p6jyi2" path="res://Player/Player.tscn" id="1_eftdg"]
 [ext_resource type="PackedScene" uid="uid://du5f68elrjh46" path="res://Game Components/Interact Area/interact_area.tscn" id="2_pe7h4"]
+[ext_resource type="Texture2D" uid="uid://cydwhyk2ouucg" path="res://Space Shooter files/explosion/sprites/explosion2.png" id="3_2u3nm"]
 [ext_resource type="PackedScene" uid="uid://0mgxrls8whml" path="res://Enemy/enemy.tscn" id="3_ft6wr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7o6hn"]
@@ -17,13 +18,25 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(804, 82, 984, 131, 1047
 position = Vector2(64, 585)
 
 [node name="InteractArea" parent="." instance=ExtResource("2_pe7h4")]
-position = Vector2(973, 124)
+position = Vector2(258, 129)
+interact_label = "Weapon Swap"
+interact_type = "shotgun_pickup"
+interact_value = "Upgraded gun!"
+
+[node name="Explosion2" type="Sprite2D" parent="InteractArea"]
+texture = ExtResource("3_2u3nm")
+
+[node name="InteractArea2" parent="." instance=ExtResource("2_pe7h4")]
+position = Vector2(1103, 55)
 interact_label = "Interaction Test"
 interact_type = "print_text"
 interact_value = "Yay! It works!"
 
+[node name="Explosion2" type="Sprite2D" parent="InteractArea2"]
+texture = ExtResource("3_2u3nm")
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(57, -38)
+position = Vector2(59, -50)
 navigation_polygon = SubResource("NavigationPolygon_7o6hn")
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("movement_target") instance=ExtResource("3_ft6wr")]
