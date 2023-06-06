@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var interactLabel = $"Interaction Components/InteractLabel"
 # Weapon type enumeration
 enum Weapons {Single = 0, Shotgun}
-@export var Weapon_Type : Weapons = Weapons.Shotgun
+@export var Weapon_Type : Weapons = Weapons.Single
 
 # Get the Bullet scene path
 const path: String = "res://bullet.tscn"
@@ -128,4 +128,9 @@ func execute_interaction():
 		# Match the current interaction's type
 		match current_interaction.interact_type:
 			"print_text": print(current_interaction.interact_value)
+			"shotgun_pickup":
+				# Change the player's current weapon type to Shotgun
+				Weapon_Type = Weapons.Shotgun
+				# Delete the interactable from the scene
+				current_interaction.queue_free()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
