@@ -127,10 +127,16 @@ func execute_interaction():
 		var current_interaction: Area2D = all_interactions[0]
 		# Match the current interaction's type
 		match current_interaction.interact_type:
-			"print_text": print(current_interaction.interact_value)
+			"speed_upgrade":
+				# Upgrade the player's maximum movement speed
+				MAX_SPEED += 100
+				# Delete the interactable from the scene
+				current_interaction.queue_free()
+				print(current_interaction.interact_value)
 			"shotgun_pickup":
 				# Change the player's current weapon type to Shotgun
 				Weapon_Type = Weapons.Shotgun
 				# Delete the interactable from the scene
 				current_interaction.queue_free()
+				print(current_interaction.interact_value)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmwrqhcxe1fma"]
+[gd_scene load_steps=7 format=3 uid="uid://cmwrqhcxe1fma"]
 
 [ext_resource type="PackedScene" uid="uid://b2xnf60p6jyi2" path="res://Player/Player.tscn" id="1_eftdg"]
 [ext_resource type="PackedScene" uid="uid://du5f68elrjh46" path="res://Game Components/Interact Area/interact_area.tscn" id="2_pe7h4"]
 [ext_resource type="Texture2D" uid="uid://cydwhyk2ouucg" path="res://Space Shooter files/explosion/sprites/explosion2.png" id="3_2u3nm"]
 [ext_resource type="PackedScene" uid="uid://0mgxrls8whml" path="res://Enemy/enemy.tscn" id="3_ft6wr"]
+[ext_resource type="Texture2D" uid="uid://cghycoxxisxvd" path="res://Space Shooter files/explosion/sprites/explosion1.png" id="4_wnd5i"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7o6hn"]
 vertices = PackedVector2Array(962, 494, 693, 382, 839, 268, 1047, 235, 804, 82, 984, 131, 720, 175, 611, 116, 404, 122, 422, 549, 373, 298, 277, 450)
@@ -27,13 +28,13 @@ interact_value = "Upgraded gun!"
 texture = ExtResource("3_2u3nm")
 
 [node name="InteractArea2" parent="." instance=ExtResource("2_pe7h4")]
-position = Vector2(1103, 55)
-interact_label = "Interaction Test"
-interact_type = "print_text"
-interact_value = "Yay! It works!"
+position = Vector2(631, 478)
+interact_label = "Speed Upgrade"
+interact_type = "speed_upgrade"
+interact_value = "Upgraded speed!"
 
-[node name="Explosion2" type="Sprite2D" parent="InteractArea2"]
-texture = ExtResource("3_2u3nm")
+[node name="Explosion1" type="Sprite2D" parent="InteractArea2"]
+texture = ExtResource("4_wnd5i")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(59, -50)
