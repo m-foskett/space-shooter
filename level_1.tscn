@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cghycoxxisxvd" path="res://Space Shooter files/explosion/sprites/explosion1.png" id="4_wnd5i"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7o6hn"]
-vertices = PackedVector2Array(962, 494, 693, 382, 839, 268, 1047, 235, 804, 82, 984, 131, 720, 175, 611, 116, 404, 122, 422, 549, 373, 298, 277, 450)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 3, 2, 6), PackedInt32Array(7, 4, 6), PackedInt32Array(8, 7, 6, 9, 10), PackedInt32Array(10, 9, 11)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(804, 82, 984, 131, 1047, 235, 962, 494, 693, 382, 839, 268, 720, 175, 422, 549, 277, 450, 373, 298, 404, 122, 611, 116)])
+vertices = PackedVector2Array(1100, 703, -63, 703, -57, 52, 1108, 53)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1100, 703, -63, 703, -57, 52, 1108, 53)])
 
 [node name="Level1" type="Node2D"]
 
@@ -46,3 +46,7 @@ movement_target = NodePath("../NavTarget")
 
 [node name="NavTarget" type="Marker2D" parent="."]
 position = Vector2(980, 371)
+
+[node name="Enemy6" parent="." node_paths=PackedStringArray("movement_target") instance=ExtResource("3_ft6wr")]
+position = Vector2(1061, 56)
+movement_target = NodePath("../Player")

@@ -9,8 +9,11 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	# Damage the body
-	pass
+	if body.object_type == "Enemy":
+		# Reduce the enemy's health points
+		body.health -= 50
+		# Delete bullet
+		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	# Delete bullet
