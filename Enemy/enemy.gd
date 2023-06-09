@@ -46,5 +46,8 @@ func _physics_process(_delta):
 func _process(_delta):
 	# If no health remaining
 	if health <= 0:
-		# Delete self
+		# Play Death Animation then Delete self
+		get_node("AnimatedSprite2D").visible = true
+		get_node("AnimatedSprite2D").play("Death")
+		await get_node("AnimatedSprite2D").animation_finished
 		queue_free()
