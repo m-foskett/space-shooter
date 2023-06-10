@@ -7,6 +7,12 @@ extends CharacterBody2D
 @export var health: float = 100
 @export var object_type: String = "Enemy"
 
+# Get the Explosion scene path
+const path: String = "res://explosion.tscn"
+# Preload instance of a Explosion scene
+# Returns: a PackedScene from the filesystem located at path
+var ExplosionScene: PackedScene = preload(path)
+
 func _ready():
 	# The distance threshold before a path point is considered to be reached
 	navigation_agent.path_desired_distance = 4.0
@@ -46,8 +52,17 @@ func _physics_process(_delta):
 func _process(_delta):
 	# If no health remaining
 	if health <= 0:
-		# Play Death Animation then Delete self
-		get_node("AnimatedSprite2D").visible = true
-		get_node("AnimatedSprite2D").play("Death")
-		await get_node("AnimatedSprite2D").animation_finished
+		# Get the Explosion Node tree
+		var explosion: Node = ExplosionScene.instantiate()
+		# Set the explosion position to the enemy's current position
+		explosion.position = global_position
+		# Make it visible
+		explosion.visible = true
+		# Add the explosion to the Scene tree under the explosions Node Group
+		get_node("/root/Level1/Explosions").add_child(explosion)
+		# Await explosion animation to delete it
+		#await explosion.animation_finished
+		#explosion.queue_free()
+		# Delete enemy instance
 		queue_free()
+		

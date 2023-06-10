@@ -15,8 +15,13 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(1100, 703, -63, 703, -5
 
 [node name="Bullets" type="Node2D" parent="."]
 
+[node name="Explosions" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("1_eftdg")]
 position = Vector2(64, 585)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.9, 0.9)
 
 [node name="InteractArea" parent="." instance=ExtResource("2_pe7h4")]
 position = Vector2(258, 129)
