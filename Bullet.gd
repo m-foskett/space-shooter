@@ -1,5 +1,7 @@
 extends Area2D
 
+@export var object_type: String = "Bullet"
+
 var direction = Vector2.RIGHT
 var speed: float = 500
 
@@ -14,6 +16,7 @@ func _on_body_entered(body):
 		body.health -= 50
 		# Delete bullet
 		queue_free()
+		
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	# Delete bullet

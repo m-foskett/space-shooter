@@ -12,6 +12,7 @@ extends CharacterBody2D
 # Weapon type enumeration
 enum Weapons {Single = 0, Shotgun}
 @export var Weapon_Type : Weapons = Weapons.Single
+@export var object_type: String = "Player"
 
 # Get the Bullet scene path
 const path: String = "res://bullet.tscn"
