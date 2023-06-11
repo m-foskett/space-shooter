@@ -60,9 +60,6 @@ func _process(_delta):
 		explosion.visible = true
 		# Add the explosion to the Scene tree under the explosions Node Group
 		get_node("/root/Level1/Explosions").add_child(explosion)
-		# Await explosion animation to delete it
-		#await explosion.animation_finished
-		#explosion.queue_free()
 		# Delete enemy instance
 		queue_free()
 		
