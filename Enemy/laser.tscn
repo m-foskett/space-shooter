@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://mli1enfrdplr"]
+
+[ext_resource type="Texture2D" uid="uid://chb2abo48wsnl" path="res://kenney_particle_pack/rotated/spark_06_rotated.png" id="1_n4btw"]
+
+[sub_resource type="Shader" id="Shader_gkfp1"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec2 uv = vec2(UV.x -sin(TIME * 80.0) * 0.1, UV.y - sin(TIME * 50.0) * 0.02);
+	COLOR = texture(TEXTURE, uv);	
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvmmg"]
+shader = SubResource("Shader_gkfp1")
+
+[node name="RayCast2D" type="RayCast2D"]
+target_position = Vector2(100, 0)
+collision_mask = 5
+
+[node name="Line2D" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_fvmmg")
+points = PackedVector2Array(0, 0, 100, 0)
+width = 150.0
+texture = ExtResource("1_n4btw")
+texture_mode = 1

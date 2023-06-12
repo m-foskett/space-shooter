@@ -16,6 +16,7 @@ mono_crash.*.json
 
 # Assets
 Space Shooter files/
+kenney_particle_pack/
 
 # Add-ons
 addons/
