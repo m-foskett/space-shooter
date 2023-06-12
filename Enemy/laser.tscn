@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://mli1enfrdplr"]
+[gd_scene load_steps=8 format=3 uid="uid://mli1enfrdplr"]
 
 [ext_resource type="Texture2D" uid="uid://chb2abo48wsnl" path="res://kenney_particle_pack/rotated/spark_06_rotated.png" id="1_n4btw"]
+[ext_resource type="Script" path="res://Enemy/laser.gd" id="1_xej3c"]
+[ext_resource type="Texture2D" uid="uid://0kc44xr0nsp5" path="res://kenney_particle_pack/spark_01.png" id="2_f3vb5"]
 
 [sub_resource type="Shader" id="Shader_gkfp1"]
 code = "shader_type canvas_item;
@@ -14,13 +16,42 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fvmmg"]
 shader = SubResource("Shader_gkfp1")
 
-[node name="RayCast2D" type="RayCast2D"]
-target_position = Vector2(100, 0)
-collision_mask = 5
+[sub_resource type="Shader" id="Shader_7u5k7"]
+code = "shader_type canvas_item;
 
-[node name="Line2D" type="Line2D" parent="."]
+void vertex() {
+	VERTEX.y += sin(TIME * 80.0) * 200.0 * (UV.x - 1.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4ldc"]
+shader = SubResource("Shader_7u5k7")
+
+[node name="RayCast2D" type="RayCast2D"]
+target_position = Vector2(400, 0)
+collision_mask = 5
+script = ExtResource("1_xej3c")
+
+[node name="Laser" type="Line2D" parent="."]
+modulate = Color(0.945098, 0.333333, 0.0745098, 1)
+texture_repeat = 2
 material = SubResource("ShaderMaterial_fvmmg")
-points = PackedVector2Array(0, 0, 100, 0)
+points = PackedVector2Array(0, 0, 400, 0)
 width = 150.0
 texture = ExtResource("1_n4btw")
 texture_mode = 1
+
+[node name="LaserEnd" type="Node2D" parent="."]
+modulate = Color(7.11, 1.18, 1.18, 1)
+position = Vector2(385, 0)
+
+[node name="Spark" type="Sprite2D" parent="LaserEnd"]
+material = SubResource("ShaderMaterial_q4ldc")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_f3vb5")
+
+[node name="Spark2" type="Sprite2D" parent="LaserEnd"]
+material = SubResource("ShaderMaterial_q4ldc")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_f3vb5")
+flip_v = true
