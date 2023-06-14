@@ -23,6 +23,10 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(1100, 703, -63, 703, -5
 [node name="RayCast2D" parent="Lasers" instance=ExtResource("1_41b8f")]
 position = Vector2(63, 442)
 
+[node name="RayCast2D2" parent="Lasers" instance=ExtResource("1_41b8f")]
+position = Vector2(912, 251)
+rotation = -3.14159
+
 [node name="Player" parent="." instance=ExtResource("1_eftdg")]
 position = Vector2(64, 585)
 
@@ -48,6 +52,7 @@ interact_value = "Upgraded speed!"
 texture = ExtResource("4_wnd5i")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 position = Vector2(59, -50)
 navigation_polygon = SubResource("NavigationPolygon_7o6hn")
 

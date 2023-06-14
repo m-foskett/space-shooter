@@ -8,6 +8,9 @@ var max_distance: float = 400
 func _ready():
 	# Set the maximum cast distance of the raycast
 	target_position = Vector2(max_distance, 0)
+	# Set the default colour of the laser
+	var laser_colour = Color(7.11, 1.18, 1.18, 1)
+	laser.set_modulate(laser_colour)
 
 func _physics_process(delta):
 	# Check if the laser is colliding with the player or a world object
