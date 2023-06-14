@@ -24,7 +24,7 @@ height = 16.0
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 8
 script = ExtResource("1_ic71x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
