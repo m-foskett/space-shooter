@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmwrqhcxe1fma"]
+[gd_scene load_steps=10 format=3 uid="uid://cmwrqhcxe1fma"]
 
+[ext_resource type="Texture2D" uid="uid://bxdjh2fct834e" path="res://Space Shooter files/background/bg-preview-big.png" id="1_2ky0q"]
 [ext_resource type="PackedScene" uid="uid://mli1enfrdplr" path="res://Enemy/laser.tscn" id="1_41b8f"]
+[ext_resource type="Script" path="res://Background.gd" id="1_cxpgq"]
 [ext_resource type="PackedScene" uid="uid://b2xnf60p6jyi2" path="res://Player/Player.tscn" id="1_eftdg"]
 [ext_resource type="PackedScene" uid="uid://du5f68elrjh46" path="res://Game Components/Interact Area/interact_area.tscn" id="2_pe7h4"]
 [ext_resource type="Texture2D" uid="uid://cydwhyk2ouucg" path="res://Space Shooter files/explosion/sprites/explosion2.png" id="3_2u3nm"]
@@ -13,6 +15,17 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(1100, 703, -63, 703, -57, 52, 1108, 53)])
 
 [node name="Level1" type="Node2D"]
+
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource("1_cxpgq")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(0, 972)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(408, 486)
+scale = Vector2(1, 2.025)
+texture = ExtResource("1_2ky0q")
 
 [node name="Bullets" type="Node2D" parent="."]
 
